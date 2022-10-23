@@ -23,8 +23,6 @@ const SectionWrapper = styled.div`
 
 const ExpandableSection: React.FC<ExpandableSectionProps> = ({ items }) => {
   const [itemsActive, setItemsActive] = React.useState<Array<number>>([]);
-  const { width } = useWindowSize();
-  const maximumItems = width < 560 ? 1 : 2;
 
   const onItemClick = (index: number) => () => {
     const exists = itemsActive.indexOf(index);
@@ -33,7 +31,7 @@ const ExpandableSection: React.FC<ExpandableSectionProps> = ({ items }) => {
       nItems.splice(exists, 1);
       return setItemsActive([...nItems]);
     }
-    if (itemsActive.length > maximumItems - 1) {
+    if (itemsActive.length > 0) {
       nItems.shift();
       nItems.push(index);
       return setItemsActive([...nItems]);
